@@ -462,6 +462,11 @@ class GameTest {
         carrier.setDirection(HORIZONTAL)
         player1.add(carrier)
 
+        val carrier2 = Ship.carrier()
+        carrier2.setPosition(Pair(1, 1))
+        carrier2.setDirection(HORIZONTAL)
+        player2.add(carrier2)
+
         val battleship = Ship.battleship()
         battleship.setPosition(Pair(3, 3))
         battleship.setDirection(VERTICAL)
@@ -485,6 +490,7 @@ class GameTest {
 
         player2.fire(Pair(5, 4), player1.board())
         player2.fire(Pair(6, 4), player1.board())
+        player1.fire(Pair(1, 1), player2.board())
 
         assertThat(Game(player1, player2).render()).isEqualTo(
             """
@@ -500,7 +506,7 @@ class GameTest {
             🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
             
 
-            🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
+            🔥🛳🛳🛳🛳🌊🌊🌊🌊🌊
             🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
             🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
             🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊
