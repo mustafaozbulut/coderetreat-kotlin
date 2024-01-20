@@ -1,4 +1,5 @@
 package be.swsb.coderetreat
+import Player
 import be.swsb.coderetreat.Game.Direction.HORIZONTAL
 import be.swsb.coderetreat.Game.Direction.VERTICAL
 
@@ -63,102 +64,7 @@ class Game(private val player1: Player, private val player2: Player) {
         return calculatedPositions.toList()
     }
 
-    class Player {
-        private val board = Board(mutableSetOf())
 
-        fun add(ship: Ship) {
-            board.add(ship)
-        }
-
-        fun board(): Board {
-            return board
-        }
-
-        fun fire(position: Position, board: Board) {
-            board.setFiredPosition(position)
-        }
-    }
-
-    class Board(private var ships: MutableSet<Ship>) {
-
-        private val firedPositions = mutableListOf<Position>()
-
-        val gameMap = Array(10) { row ->
-            Array(10) { col ->
-                Position(col + 1, row + 1)
-            }
-        }
-
-        fun ships(): Set<Ship> {
-            return ships
-        }
-
-        fun add(ship: Ship) {
-            ships.add(ship)
-        }
-
-        fun setFiredPosition(position: Position) {
-            firedPositions.add(position)
-        }
-
-        fun firedPositions(): List<Position> {
-            return firedPositions.toList()
-        }
-
-    }
-
-    class Ship(private var position: Position, private var direction: Direction, private var size: Int) {
-
-        fun position(): Position {
-            return position
-        }
-
-        fun setPosition(position: Position) {
-            this.position = position
-        }
-
-        fun direction(): Direction {
-            return direction
-        }
-
-        fun setDirection(direction: Direction) {
-            this.direction = direction
-        }
-
-        fun size(): Int {
-            return size
-        }
-
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
-
-            other as Ship
-
-            if (position != other.position) return false
-            if (direction != other.direction) return false
-            if (size != other.size) return false
-
-            return true
-        }
-
-        override fun hashCode(): Int {
-            var result = position.hashCode()
-            result = 31 * result + direction.hashCode()
-            result = 31 * result + size
-            return result
-        }
-
-        companion object {
-            fun carrier(): Ship = Ship(Position(0, 0), VERTICAL, 5)
-            fun battleship() = Ship(Position(0, 0), VERTICAL, 4)
-            fun destroyer() = Ship(Position(0, 0), VERTICAL, 3)
-            fun submarine() = Ship(Position(0, 0), VERTICAL, 3)
-            fun patrolBoat() = Ship(Position(0, 0), VERTICAL, 2)
-        }
-
-
-    }
 
     enum class Direction {
         VERTICAL,

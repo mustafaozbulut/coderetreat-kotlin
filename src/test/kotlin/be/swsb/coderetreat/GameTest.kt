@@ -1,6 +1,6 @@
 package be.swsb.coderetreat
 
-import be.swsb.coderetreat.Game.*
+import Player
 import be.swsb.coderetreat.Game.Direction.HORIZONTAL
 import be.swsb.coderetreat.Game.Direction.VERTICAL
 import org.assertj.core.api.Assertions.assertThat
